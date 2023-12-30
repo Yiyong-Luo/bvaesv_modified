@@ -295,10 +295,11 @@ bvar.sv.tvp <- cmpfun(function(Y, p = 1, tau = 40, nf = 10, pdrift = TRUE, nrep 
   
   # Get OLS inputs for prior parameters
   
-  prior <- tsprior(Y[1:(tau+p),],p,2000)                
+  # prior <- tsprior(Y[1:(tau+p),],p,2000)                
   
   # Make prior parameters (Gaussian priors)
-  
+  prior <- list(B_OLS=array(0,c(K,1)), VB_OLS = diag(K), A_OLS = array(0,c(numa,1)), sigma_OLS = array(1,c(M,1)), VA_OLS = diag(numa))
+	
   B_0_prmean <- prior$B_OLS
   B_0_prvar <- k_B*prior$VB_OLS 
   A_0_prmean <- prior$A_OLS
